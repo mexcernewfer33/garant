@@ -1,0 +1,94 @@
+{
+  "79cd19cc": {
+    "creator_id": 532319147,
+    "method": "Звезды (оплата звездами)",
+    "amount": 111.0,
+    "currency": "⭐",
+    "product": "1111",
+    "user1_payment_details": "оплата звездами",
+    "buyer_id": 6618226985,
+    "buyer_username": "swols",
+    "confirmed": true
+  },
+  "3e1c2a5a": {
+    "creator_id": 6618226985,
+    "method": "Звезды (оплата звездами)",
+    "amount": 111.0,
+    "currency": "⭐",
+    "product": "21121",
+    "user1_payment_details": "оплата звездами",
+    "buyer_id": 7634439386,
+    "buyer_username": "toueo",
+    "confirmed": true
+  },
+  "09ba878a": {
+    "creator_id": 7634439386,
+    "creator_username": "toueo",
+    "method": "Звезды (оплата звездами)",
+    "amount": 82818.0,
+    "currency": "⭐",
+    "product": "8282828",
+    "user1_payment_details": "оплата звездами",
+    "buyer_id": 6618226985,
+    "buyer_username": "swols",
+    "confirmed": true
+  },
+  "d49dc7d0": {
+    "creator_id": 7634439386,
+    "creator_username": "toueo",
+    "method": "TON (EQC1234567890abcdef...)",
+    "amount": 4444.0,
+    "currency": "TON",
+    "product": ",((;;",
+    "user1_payment_details": "EQC1234567890abcdef...",
+    "buyer_id": 6618226985,
+    "buyer_username": "swols",
+    "canceled": true
+  },
+  "198f0254": {
+    "creator_id": 6618226985,
+    "creator_username": "swols",
+    "method": "Звезды (оплата звездами)",
+    "amount": 11.0,
+    "currency": "⭐",
+    "product": "1111",
+    "user1_payment_details": "оплата звездами",
+    "buyer_id": 7634439386,
+    "buyer_username": "toueo",
+    "confirmed": true
+  },
+  "fbf97df9": {
+    "creator_id": 6618226985,
+    "creator_username": "swols",
+    "method": "Звезды (оплата звездами)",
+    "amount": 1488.0,
+    "currency": "⭐",
+    "product": "влоцатдл",
+    "user1_payment_details": "оплата звездами",
+    "buyer_id": 7634439386,
+    "buyer_username": "toueo",
+    "confirmed": true
+  },
+  "a093d219": {
+    "creator_id": 7702301440,
+    "creator_username": "vobuuo",
+    "method": "Звезды (оплата звездами)",
+    "amount": 5000.0,
+    "currency": "⭐",
+    "product": "Подарок",
+    "user1_payment_details": "оплата звездами",
+    "canceled": true
+  },
+  "f4d4a562": {
+    "creator_id": 6618226985,
+    "creator_username": "swols",
+    "method": "Звезды (оплата звездами)",
+    "amount": 1.0,
+    "currency": "⭐",
+    "product": "xuy",
+    "user1_payment_details": "оплата звездами",
+    "buyer_id": 7634439386,
+    "buyer_username": "toueo",
+    "confirmed": true
+  }
+}
