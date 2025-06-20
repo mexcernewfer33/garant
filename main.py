@@ -604,36 +604,7 @@ async def send_to_user(message: types.Message):
 from aiogram.utils.markdown import escape_md
 from aiogram.enums import ParseMode
 
-@dp.message(Command("users"))
-async def list_users(message: types.Message):
-    if message.from_user.id not in ADMINS:
-        await message.answer("❌ У вас нет прав для этой команды.")
-        return
 
-    if not all_users:
-        await message.answer("ℹ️ Список пользователей пуст.")
-        return
-
-    lines = []
-    for user_id in all_users:
-        try:
-            user = await bot.get_chat(user_id)
-            full_name = escape_md(user.full_name or "Не указано")
-            username = escape_md(f"@{user.username}") if user.username else "неизвестно"
-            lines.append(f"{full_name} - {username} - `{user_id}`")
-        except Exception as e:
-            lines.append(f"❌ Ошибка получения info для ID {user_id}: {escape_md(str(e))}")
-
-    result = "\n".join(lines)
-
-    # Разбиваем на части, если слишком длинное сообщение
-    max_len = 4000
-    if len(result) > max_len:
-        chunks = [result[i:i+max_len] for i in range(0, len(result), max_len)]
-        for chunk in chunks:
-            await message.answer(chunk, parse_mode=ParseMode.MARKDOWN_V2)
-    else:
-        await message.answer(result, parse_mode=ParseMode.MARKDOWN_V2)
 
 @dp.message(Command("cancel_deal"))
 async def admin_cancel_deal(message: types.Message):
