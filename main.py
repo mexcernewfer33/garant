@@ -686,30 +686,14 @@ async def admin_cancel_deal(message: types.Message):
 
 
 
-# Экранирование MarkdownV2 вручную
 def escape_md(text: str) -> str:
     if not isinstance(text, str):
         text = str(text)
-    return text.translate(str.maketrans({
-        '_': '\\_',
-        '*': '\\*',
-        '[': '\\[',
-        ']': '\\]',
-        '(': '\\(',
-        ')': '\\)',
-        '~': '\\~',
-        '`': '\\`',
-        '>': '\\>',
-        '#': '\\#',
-        '+': '\\+',
-        '-': '\\-',
-        '=': '\\=',
-        '|': '\\|',
-        '{': '\\{',
-        '}': '\\}',
-        '.': '\\.',
-        '!': '\\!',
-    }))
+    escape_chars = r"_*[]()~`>#+-=|{}.!"
+    for char in escape_chars:
+        text = text.replace(char, f"\\{char}")
+    return text.replace("\\", "\\\\")
+
 
 @dp.message(Command("all_deals"))
 async def all_deals_handler(message: types.Message):
