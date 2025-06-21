@@ -737,7 +737,7 @@ async def all_deals_handler(message: types.Message):
                 f"💵 Сумма: {amount} {currency}\n"
                 f"🎁 Товар: {product}\n"
                 f"📌 Статус: *{escape_md(status)}*\n"
-                f"{'-' * 30}\n"
+                f"{escape_md('-' * 30)}\n"
             )
 
 
