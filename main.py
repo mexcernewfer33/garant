@@ -687,13 +687,16 @@ async def admin_cancel_deal(message: types.Message):
 
 
 def escape_md(text: str) -> str:
+    """
+    Экранирует спецсимволы для Telegram MarkdownV2.
+    Один слеш на каждый спецсимвол.
+    """
     if not isinstance(text, str):
         text = str(text)
     escape_chars = r"_*[]()~`>#+-=|{}.!"
     for char in escape_chars:
         text = text.replace(char, f"\\{char}")
-    return text.replace("\\", "\\\\")
-
+    return text
 
 @dp.message(Command("all_deals"))
 async def all_deals_handler(message: types.Message):
