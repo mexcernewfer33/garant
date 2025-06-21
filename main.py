@@ -13,7 +13,6 @@ import json
 import os
 from aiogram import F
 from aiogram.types import Message
-from aiogram.utils.markdown import escape_md
 
 
 
@@ -686,6 +685,32 @@ async def admin_cancel_deal(message: types.Message):
 
 
 
+
+# Экранирование MarkdownV2 вручную
+def escape_md(text: str) -> str:
+    if not isinstance(text, str):
+        text = str(text)
+    return text.translate(str.maketrans({
+        '_': '\\_',
+        '*': '\\*',
+        '[': '\\[',
+        ']': '\\]',
+        '(': '\\(',
+        ')': '\\)',
+        '~': '\\~',
+        '`': '\\`',
+        '>': '\\>',
+        '#': '\\#',
+        '+': '\\+',
+        '-': '\\-',
+        '=': '\\=',
+        '|': '\\|',
+        '{': '\\{',
+        '}': '\\}',
+        '.': '\\.',
+        '!': '\\!',
+    }))
+
 @dp.message(Command("all_deals"))
 async def all_deals_handler(message: types.Message):
     try:
@@ -703,12 +728,12 @@ async def all_deals_handler(message: types.Message):
         for deal_id, deal in deal_storage.items():
             creator_id = deal.get("creator_id", "❓")
             creator_username = escape_md(f"@{deal.get('creator_username', 'неизвестно')}")
-            buyer_id = deal.get("buyer_id", None)
+            buyer_id = deal.get("buyer_id")
             buyer_username = escape_md(f"@{deal.get('buyer_username', 'неизвестно')}") if buyer_id else "—"
 
-            method = escape_md(str(deal.get("method", "—")))
-            currency = escape_md(str(deal.get("currency", "—")))
-            product = escape_md(str(deal.get("product", "—")))
+            method = escape_md(deal.get("method", "—"))
+            currency = escape_md(deal.get("currency", "—"))
+            product = escape_md(deal.get("product", "—"))
             amount = escape_md(str(deal.get("amount", "—")))
 
             status = (
@@ -718,7 +743,7 @@ async def all_deals_handler(message: types.Message):
             )
 
             response += (
-                f"🆔 ID: `{escape_md(str(deal_id))}`\n"
+                f"🆔 ID: `{escape_md(deal_id)}`\n"
                 f"👤 Продавец: {creator_username} ({creator_id})\n"
                 f"🧑‍💻 Покупатель: {buyer_username} ({buyer_id or '—'})\n"
                 f"💳 Метод: {method}\n"
@@ -730,16 +755,17 @@ async def all_deals_handler(message: types.Message):
 
             count += 1
 
+        # Отправка
         if len(response) > 4000:
+            await message.answer(f"📦 Всего сделок: {count}", parse_mode="MarkdownV2")
             chunks = [response[i:i + 4000] for i in range(0, len(response), 4000)]
-            await message.answer(f"📦 Всего сделок: {count}", parse_mode="Markdown")
             for chunk in chunks:
-                await message.answer(chunk, parse_mode="Markdown")
+                await message.answer(chunk, parse_mode="MarkdownV2")
         else:
-            await message.answer(f"📦 Всего сделок: {count}\n\n{response}", parse_mode="Markdown")
+            await message.answer(f"📦 Всего сделок: {count}\n\n{response}", parse_mode="MarkdownV2")
 
     except Exception as e:
-        await message.answer(f"⚠️ Произошла ошибка при выводе сделок:\n`{escape_md(str(e))}`", parse_mode="Markdown")
+        await message.answer(f"⚠️ Ошибка:\n<code>{escape_md(str(e))}</code>", parse_mode="HTML")
         raise
 
 @dp.message(Command("active_deals"))
