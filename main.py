@@ -730,15 +730,16 @@ async def all_deals_handler(message: types.Message):
             )
 
             response += (
-                f"🆔 ID: `{escape_md(deal_id)}`\n"
-                f"👤 Продавец: {creator_username} ({creator_id})\n"
-                f"🧑‍💻 Покупатель: {buyer_username} ({buyer_id or '—'})\n"
+                f"🆔 ID: `{escape_md(str(deal_id))}`\n"
+                f"👤 Продавец: {creator_username} \\({escape_md(str(creator_id))}\\)\n"
+                f"🧑‍💻 Покупатель: {buyer_username} \\({escape_md(str(buyer_id or '—'))}\\)\n"
                 f"💳 Метод: {method}\n"
                 f"💵 Сумма: {amount} {currency}\n"
                 f"🎁 Товар: {product}\n"
-                f"📌 Статус: *{status}*\n"
+                f"📌 Статус: *{escape_md(status)}*\n"
                 f"{'-' * 30}\n"
             )
+
 
             count += 1
 
